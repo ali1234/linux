@@ -1,0 +1,35 @@
+// Overlay for Avago APDS9960 RGB light and gesture I2C sensor
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2708";
+
+	fragment@0 {
+		target = <&i2c_arm>;
+		__overlay__ {
+			apds9960: apds9960@39 {
+				compatible = "avago,apds9960";
+				reg = <0x39>;
+				interrupt-parent = <&gpio>;
+				interrupts = <4 2>;
+			};
+		};
+	};
+
+        fragment@2 {
+                target = <&gpio>;
+                __overlay__ {
+                        apds9960_pins: apds9960_pins {
+                                brcm,pins = <4>;
+                                brcm,function = <0>; /* in out out */
+                        };
+                };
+        };
+
+
+	__overrides__ {
+		apds9960_gpio = <&apds9960>,"interrupts:0",
+                                <&apds9960_pins>, "brcm,pins:0";
+	};
+};

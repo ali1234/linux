@@ -235,6 +235,12 @@ Params: 24db_digital_gain       Allow gain to be applied via the PCM512x codec
                                 that does not result in clipping/distortion!)
 
 
+Name:   apds9960
+Info:   Configures the Avago APDS9960 RGB light and gensture sensor.
+Load:   dtoverlay=apds9960,<param>=<val>
+Params: interrupt               GPIO used for INT (default 4)
+
+
 Name:   at86rf233
 Info:   Configures the Atmel AT86RF233 802.15.4 low-power WPAN transceiver,
         connected to spi0.0
